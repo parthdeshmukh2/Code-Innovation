@@ -49,5 +49,19 @@ BlogController.delete("/delete/:id", async(req, res)=>{
     }
 })
 
+BlogController.get("/:id", async(req, res)=>{
+    const {id} = req.params;
+    const {userId} = req.body;
+    const blog = await BlogModel.findOne({_id:id});
+    if(blog.userId === userId){
+        const result = await BlogModel.findOne({_id:id});
+        res.send(result);
+    }
+    else{
+
+        res.send("Blog Not Found");
+    }
+})
+
 
 module.exports = BlogController;

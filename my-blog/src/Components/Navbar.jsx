@@ -126,8 +126,8 @@ const Navbar = () => {
                     </Center>
                     <br />
                     <MenuDivider />
-                    <MenuItem onClick={() => navigate("/profile")}>
-                      Profile
+                    <MenuItem onClick={() => navigate("/blogs")}>
+                      My Blogs
                     </MenuItem>
                   </MenuList>
                 </Menu>
