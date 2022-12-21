@@ -4,17 +4,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import JoditEditor from "jodit-react";
 import { useRef } from "react";
+import { PostBlogData } from "../Redux/AppReducer/action";
 
 const Form = () => {
   const isLogin = useSelector((store) => store.AuthReducer.isAuth);
-  // const token = useSelector((store) => store.AuthReducer.token);
+  const token = useSelector((store) => store.AuthReducer.token);
   const navigate = useNavigate();
   const [Title, setTitle] = useState("");
   const [Content, setContent] = useState("");
   const dispatch = useDispatch();
   const editor = useRef(null);
 
+  const handlePost = () =>{
+    if(Title && Content){
+    dispatch(PostBlogData({Title, Content}, token));
+    }
+    else{
+        alert("All the fields are necessary")
+    }
+
+  }
+
   return (
+
     <Box>
       {!isLogin && (
         <Box w="80%" m="auto" mt="16" textAlign="center">
@@ -49,7 +61,7 @@ const Form = () => {
             Post Your Personal Blog Here....
           </Text>
 
-          <Input placeholder="Enter Title" w="90%" m="auto" mt="8" />
+          <Input placeholder="Enter Title" w="90%" m="auto" mt="8" onChange={(e)=> setTitle(e.target.value)} />
           <Box w="90%" m="auto" mt="8">
             <JoditEditor
               ref={editor}
@@ -65,6 +77,7 @@ const Form = () => {
             mt="8"
             bg="green"
             color="white"
+            onClick = {handlePost}
           >
             Post Your Blog
           </Button>

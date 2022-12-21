@@ -12,7 +12,7 @@ const MianRoutes = () => {
     <Routes>
     <Route path="/" element={<HomePage />} />
     <Route path="/blogs" element={<Blogs />} />
-    <Route path="/blog/:id" element={<SingleBlog />} />
+    <Route path="/:id" element={<SingleBlog />} />
     <Route path="/edit/:id" element={<EditBlog />} />
     <Route path="/login" element={<Login/>} />
     <Route path="/register" element={<SignUp />} />
